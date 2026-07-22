@@ -3,30 +3,30 @@
 ---
 
 ## 1. System Layer Diagram
-
 ```mermaid
 flowchart TB
-    subgraph Frontend[React Front‑end]
-        FE[React + TypeScript] --> UI[UI Components (MUI/Zustand/Storybook)]
-        UI --> WS[SignalR Client]
+
+    subgraph Frontend["React Frontend"]
+        FE["React + TypeScript"] --> UI["UI Components<br/>MUI<br/>Zustand<br/>Storybook"]
+        UI --> WS["SignalR Client"]
     end
 
-    subgraph Backend[ASP.NET Core Backend]
-        BE[.NET 10 + EF Core] --> API[REST Controllers]
-        API --> DB[PostgreSQL]
-        API --> HUB[SignalR Hub]
+    subgraph Backend["ASP.NET Core Backend"]
+        BE[".NET 10<br/>EF Core"] --> API["REST Controllers"]
+        API --> DB["PostgreSQL"]
+        API --> HUB["SignalR Hub"]
         HUB --> WS
     end
 
-    subgraph Infra[Infrastructure]
-        D[Docker Compose] --> BE
-        D --> FE
-        D --> DB
+    subgraph Infra["Infrastructure"]
+        DC["Docker Compose"] --> BE
+        DC --> FE
+        DC --> DB
     end
 
-    FE -- HTTPS --> API
-    API -- HTTPS --> DB
-    FE -- WebSocket --> HUB
+    FE -->|HTTPS| API
+    API -->|HTTPS| DB
+    FE -->|WebSocket| HUB
 ```
 
 **Explanation**

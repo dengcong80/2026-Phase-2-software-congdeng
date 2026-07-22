@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "A8g0PiHMj+E=",
+  "dgSpecHash": "BGpZNOgdQew=",
   "success": true,
   "projectFilePath": "C:\\Users\\dengc\\Desktop\\cs artificial intelligence\\2026semester1\\MSA2026\\2026-Phase-2\\software\\backend\\backend.csproj",
   "expectedPackageFiles": [
@@ -23,16 +23,7 @@
     "C:\\Users\\dengc\\.nuget\\packages\\microsoft.entityframeworkcore.design\\9.0.1\\microsoft.entityframeworkcore.design.9.0.1.nupkg.sha512",
     "C:\\Users\\dengc\\.nuget\\packages\\microsoft.entityframeworkcore.relational\\9.0.1\\microsoft.entityframeworkcore.relational.9.0.1.nupkg.sha512",
     "C:\\Users\\dengc\\.nuget\\packages\\microsoft.entityframeworkcore.tools\\9.0.1\\microsoft.entityframeworkcore.tools.9.0.1.nupkg.sha512",
-    "C:\\Users\\dengc\\.nuget\\packages\\microsoft.extensions.caching.abstractions\\9.0.1\\microsoft.extensions.caching.abstractions.9.0.1.nupkg.sha512",
-    "C:\\Users\\dengc\\.nuget\\packages\\microsoft.extensions.caching.memory\\9.0.1\\microsoft.extensions.caching.memory.9.0.1.nupkg.sha512",
-    "C:\\Users\\dengc\\.nuget\\packages\\microsoft.extensions.configuration.abstractions\\9.0.1\\microsoft.extensions.configuration.abstractions.9.0.1.nupkg.sha512",
-    "C:\\Users\\dengc\\.nuget\\packages\\microsoft.extensions.dependencyinjection\\9.0.1\\microsoft.extensions.dependencyinjection.9.0.1.nupkg.sha512",
-    "C:\\Users\\dengc\\.nuget\\packages\\microsoft.extensions.dependencyinjection.abstractions\\9.0.1\\microsoft.extensions.dependencyinjection.abstractions.9.0.1.nupkg.sha512",
     "C:\\Users\\dengc\\.nuget\\packages\\microsoft.extensions.dependencymodel\\9.0.1\\microsoft.extensions.dependencymodel.9.0.1.nupkg.sha512",
-    "C:\\Users\\dengc\\.nuget\\packages\\microsoft.extensions.logging\\9.0.1\\microsoft.extensions.logging.9.0.1.nupkg.sha512",
-    "C:\\Users\\dengc\\.nuget\\packages\\microsoft.extensions.logging.abstractions\\9.0.1\\microsoft.extensions.logging.abstractions.9.0.1.nupkg.sha512",
-    "C:\\Users\\dengc\\.nuget\\packages\\microsoft.extensions.options\\9.0.1\\microsoft.extensions.options.9.0.1.nupkg.sha512",
-    "C:\\Users\\dengc\\.nuget\\packages\\microsoft.extensions.primitives\\9.0.1\\microsoft.extensions.primitives.9.0.1.nupkg.sha512",
     "C:\\Users\\dengc\\.nuget\\packages\\microsoft.identitymodel.abstractions\\8.4.0\\microsoft.identitymodel.abstractions.8.4.0.nupkg.sha512",
     "C:\\Users\\dengc\\.nuget\\packages\\microsoft.identitymodel.jsonwebtokens\\8.4.0\\microsoft.identitymodel.jsonwebtokens.8.4.0.nupkg.sha512",
     "C:\\Users\\dengc\\.nuget\\packages\\microsoft.identitymodel.logging\\8.4.0\\microsoft.identitymodel.logging.8.4.0.nupkg.sha512",
@@ -45,19 +36,13 @@
     "C:\\Users\\dengc\\.nuget\\packages\\npgsql.entityframeworkcore.postgresql\\9.0.4\\npgsql.entityframeworkcore.postgresql.9.0.4.nupkg.sha512",
     "C:\\Users\\dengc\\.nuget\\packages\\scalar.aspnetcore\\2.6.0\\scalar.aspnetcore.2.6.0.nupkg.sha512",
     "C:\\Users\\dengc\\.nuget\\packages\\system.codedom\\6.0.0\\system.codedom.6.0.0.nupkg.sha512",
-    "C:\\Users\\dengc\\.nuget\\packages\\system.collections.immutable\\7.0.0\\system.collections.immutable.7.0.0.nupkg.sha512",
     "C:\\Users\\dengc\\.nuget\\packages\\system.composition\\7.0.0\\system.composition.7.0.0.nupkg.sha512",
     "C:\\Users\\dengc\\.nuget\\packages\\system.composition.attributedmodel\\7.0.0\\system.composition.attributedmodel.7.0.0.nupkg.sha512",
     "C:\\Users\\dengc\\.nuget\\packages\\system.composition.convention\\7.0.0\\system.composition.convention.7.0.0.nupkg.sha512",
     "C:\\Users\\dengc\\.nuget\\packages\\system.composition.hosting\\7.0.0\\system.composition.hosting.7.0.0.nupkg.sha512",
     "C:\\Users\\dengc\\.nuget\\packages\\system.composition.runtime\\7.0.0\\system.composition.runtime.7.0.0.nupkg.sha512",
     "C:\\Users\\dengc\\.nuget\\packages\\system.composition.typedparts\\7.0.0\\system.composition.typedparts.7.0.0.nupkg.sha512",
-    "C:\\Users\\dengc\\.nuget\\packages\\system.identitymodel.tokens.jwt\\8.4.0\\system.identitymodel.tokens.jwt.8.4.0.nupkg.sha512",
-    "C:\\Users\\dengc\\.nuget\\packages\\system.io.pipelines\\7.0.0\\system.io.pipelines.7.0.0.nupkg.sha512",
-    "C:\\Users\\dengc\\.nuget\\packages\\system.reflection.metadata\\7.0.0\\system.reflection.metadata.7.0.0.nupkg.sha512",
-    "C:\\Users\\dengc\\.nuget\\packages\\system.runtime.compilerservices.unsafe\\6.0.0\\system.runtime.compilerservices.unsafe.6.0.0.nupkg.sha512",
-    "C:\\Users\\dengc\\.nuget\\packages\\system.text.json\\9.0.1\\system.text.json.9.0.1.nupkg.sha512",
-    "C:\\Users\\dengc\\.nuget\\packages\\system.threading.channels\\7.0.0\\system.threading.channels.7.0.0.nupkg.sha512"
+    "C:\\Users\\dengc\\.nuget\\packages\\system.identitymodel.tokens.jwt\\8.4.0\\system.identitymodel.tokens.jwt.8.4.0.nupkg.sha512"
   ],
   "logs": [
     {
@@ -69,7 +54,7 @@
       "filePath": "C:\\Users\\dengc\\Desktop\\cs artificial intelligence\\2026semester1\\MSA2026\\2026-Phase-2\\software\\backend\\backend.csproj",
       "libraryId": "Microsoft.IdentityModel.Tokens",
       "targetGraphs": [
-        "net9.0"
+        "net10.0"
       ]
     },
     {
@@ -81,7 +66,7 @@
       "filePath": "C:\\Users\\dengc\\Desktop\\cs artificial intelligence\\2026semester1\\MSA2026\\2026-Phase-2\\software\\backend\\backend.csproj",
       "libraryId": "Scalar.AspNetCore",
       "targetGraphs": [
-        "net9.0"
+        "net10.0"
       ]
     },
     {
@@ -93,7 +78,7 @@
       "filePath": "C:\\Users\\dengc\\Desktop\\cs artificial intelligence\\2026semester1\\MSA2026\\2026-Phase-2\\software\\backend\\backend.csproj",
       "libraryId": "System.IdentityModel.Tokens.Jwt",
       "targetGraphs": [
-        "net9.0"
+        "net10.0"
       ]
     }
   ]

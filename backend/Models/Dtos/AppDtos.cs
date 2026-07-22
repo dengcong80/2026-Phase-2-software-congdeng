@@ -49,6 +49,7 @@ namespace Backend.Models.Dtos
         string Status,
         int LikesCount,
         bool CompletedByMe,
+        bool LikedByMe,
         DateTime CreatedAt
     );
 
@@ -56,6 +57,19 @@ namespace Backend.Models.Dtos
         int EarnedXp,
         int TotalXp,
         List<string> NewBadges
+    );
+
+    public record CommentResponse(
+        Guid Id,
+        string Username,
+        string Text,
+        int LikesCount,
+        bool LikedByMe,
+        DateTime CreatedAt
+    );
+
+    public record CreateCommentRequest(
+        string Text
     );
 
     // ─── Leaderboard ────────────────────────────────────────────────────────────

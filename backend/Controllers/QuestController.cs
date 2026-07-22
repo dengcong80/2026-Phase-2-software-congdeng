@@ -149,6 +149,53 @@ namespace Backend.Controllers
             }
         }
 
+        // GET /api/quests/{id}/comments
+        [HttpGet("{id:guid}/comments")]
+        [ProducesResponseType(typeof(ApiResponse<List<CommentResponse>>), 200)]
+        public async Task<IActionResult> GetComments(Guid id)
+        {
+            var uid = GetUserId();
+            var comments = await _questService.GetCommentsAsync(id, uid);
+            return Ok(new ApiResponse<List<CommentResponse>>(true, null, comments));
+        }
+
+        // POST /api/quests/{id}/comments
+        [HttpPost("{id:guid}/comments")]
+        [Authorize]
+        [ProducesResponseType(typeof(ApiResponse<CommentResponse>), 201)]
+        public async Task<IActionResult> CreateComment(Guid id, [FromBody] CreateCommentRequest req)
+        {
+            var uid = GetUserId()!.Value;
+            try
+            {
+                var comment = await _questService.AddCommentAsync(id, uid, req.Text);
+                return CreatedAtAction(nameof(GetComments), new { id }, 
+                    new ApiResponse<CommentResponse>(true, "Comment created.", comment));
+            }
+            catch (KeyNotFoundException ex)
+            {
+                return NotFound(new ApiResponse<object>(false, ex.Message, null));
+            }
+        }
+
+        // POST /api/quests/comments/{commentId}/like
+        [HttpPost("comments/{commentId:guid}/like")]
+        [Authorize]
+        [ProducesResponseType(typeof(ApiResponse<int>), 200)]
+        public async Task<IActionResult> LikeComment(Guid commentId)
+        {
+            var uid = GetUserId()!.Value;
+            try
+            {
+                int count = await _questService.ToggleCommentLikeAsync(commentId, uid);
+                return Ok(new ApiResponse<int>(true, "Comment like toggled.", count));
+            }
+            catch (KeyNotFoundException ex)
+            {
+                return NotFound(new ApiResponse<object>(false, ex.Message, null));
+            }
+        }
+
         // ─── Helpers ─────────────────────────────────────────────────────────────
 
         private Guid? GetUserId()

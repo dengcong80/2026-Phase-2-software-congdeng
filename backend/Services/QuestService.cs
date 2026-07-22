@@ -195,6 +195,71 @@ namespace Backend.Services
             return likeCount;
         }
 
+        // ─── Comments ─────────────────────────────────────────────────────────────
+
+        public async Task<List<CommentResponse>> GetCommentsAsync(Guid questId, Guid? userId)
+        {
+            var comments = await _db.Comments
+                .Include(c => c.User)
+                .Include(c => c.CommentLikes)
+                .Where(c => c.QuestId == questId)
+                .OrderByDescending(c => c.CreatedAt)
+                .ToListAsync();
+
+            return comments.Select(c => new CommentResponse(
+                c.Id,
+                c.User.Username,
+                c.Text,
+                c.CommentLikes?.Count ?? 0,
+                userId.HasValue && (c.CommentLikes?.Any(l => l.UserId == userId) ?? false),
+                c.CreatedAt
+            )).ToList();
+        }
+
+        public async Task<CommentResponse> AddCommentAsync(Guid questId, Guid userId, string text)
+        {
+            var quest = await _db.Quests.FindAsync(questId) ?? throw new KeyNotFoundException("Quest not found.");
+            
+            var comment = new Comment
+            {
+                QuestId = questId,
+                UserId = userId,
+                Text = text,
+                CreatedAt = DateTime.UtcNow,
+                CommentLikes = new List<CommentLike>()
+            };
+
+            _db.Comments.Add(comment);
+            await _db.SaveChangesAsync();
+
+            await _db.Entry(comment).Reference(c => c.User).LoadAsync();
+
+            return new CommentResponse(
+                comment.Id,
+                comment.User.Username,
+                comment.Text,
+                0,
+                false,
+                comment.CreatedAt
+            );
+        }
+
+        public async Task<int> ToggleCommentLikeAsync(Guid commentId, Guid userId)
+        {
+            var comment = await _db.Comments.FindAsync(commentId)
+                ?? throw new KeyNotFoundException("Comment not found.");
+
+            var like = await _db.CommentLikes.FirstOrDefaultAsync(l => l.CommentId == commentId && l.UserId == userId);
+            if (like is null)
+                _db.CommentLikes.Add(new CommentLike { CommentId = commentId, UserId = userId, CreatedAt = DateTime.UtcNow });
+            else
+                _db.CommentLikes.Remove(like);
+
+            await _db.SaveChangesAsync();
+
+            return await _db.CommentLikes.CountAsync(l => l.CommentId == commentId);
+        }
+
         // ─── Leaderboard ─────────────────────────────────────────────────────────
 
         public async Task<List<LeaderboardEntryResponse>> GetLeaderboardAsync(int top = 20)
@@ -224,6 +289,7 @@ namespace Backend.Services
             q.Status.ToString(),
             q.Likes?.Count ?? 0,
             uid.HasValue && (q.UserQuests?.Any(uq => uq.UserId == uid && uq.CompletedAt != null) ?? false),
+            uid.HasValue && (q.Likes?.Any(l => l.UserId == uid) ?? false),
             q.CreatedAt
         );
 

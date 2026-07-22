@@ -52,6 +52,59 @@ namespace backend.Migrations
                     b.ToTable("Badges");
                 });
 
+            modelBuilder.Entity("Backend.Models.Comment", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uuid");
+
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<Guid>("QuestId")
+                        .HasColumnType("uuid");
+
+                    b.Property<string>("Text")
+                        .IsRequired()
+                        .HasMaxLength(1000)
+                        .HasColumnType("character varying(1000)");
+
+                    b.Property<Guid>("UserId")
+                        .HasColumnType("uuid");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("QuestId");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("Comments");
+                });
+
+            modelBuilder.Entity("Backend.Models.CommentLike", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uuid");
+
+                    b.Property<Guid>("CommentId")
+                        .HasColumnType("uuid");
+
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<Guid>("UserId")
+                        .HasColumnType("uuid");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("CommentId");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("CommentLikes");
+                });
+
             modelBuilder.Entity("Backend.Models.LeaderboardEntry", b =>
                 {
                     b.Property<Guid>("Id")
@@ -142,6 +195,338 @@ namespace backend.Migrations
                         .IsUnique();
 
                     b.ToTable("Quests");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = new Guid("de000000-0000-0000-0000-000000000001"),
+                            CreatedAt = new DateTime(2026, 7, 20, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Description = "Visit Mission Bay and upload a photo of the beach.",
+                            Latitude = -36.8523,
+                            Longitude = 174.8313,
+                            RewardXp = 80,
+                            Status = 0,
+                            Title = "Mission Bay Explorer"
+                        },
+                        new
+                        {
+                            Id = new Guid("de000000-0000-0000-0000-000000000002"),
+                            CreatedAt = new DateTime(2026, 7, 20, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Description = "Walk along Viaduct Harbour and check in.",
+                            Latitude = -36.843499999999999,
+                            Longitude = 174.76150000000001,
+                            RewardXp = 70,
+                            Status = 0,
+                            Title = "Auckland Waterfront Walk"
+                        },
+                        new
+                        {
+                            Id = new Guid("de000000-0000-0000-0000-000000000003"),
+                            CreatedAt = new DateTime(2026, 7, 20, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Description = "Find the Britomart Clock Tower and take a photo.",
+                            Latitude = -36.844099999999997,
+                            Longitude = 174.76769999999999,
+                            RewardXp = 60,
+                            Status = 0,
+                            Title = "Britomart Discovery"
+                        },
+                        new
+                        {
+                            Id = new Guid("de000000-0000-0000-0000-000000000004"),
+                            CreatedAt = new DateTime(2026, 7, 20, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Description = "Visit the public art installations in Wynyard Quarter.",
+                            Latitude = -36.839500000000001,
+                            Longitude = 174.75749999999999,
+                            RewardXp = 90,
+                            Status = 0,
+                            Title = "Wynyard Quarter Explorer"
+                        },
+                        new
+                        {
+                            Id = new Guid("de000000-0000-0000-0000-000000000005"),
+                            CreatedAt = new DateTime(2026, 7, 20, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Description = "Share your favourite Auckland skyline photo after sunset.",
+                            Latitude = -36.840600000000002,
+                            Longitude = 174.74000000000001,
+                            RewardXp = 120,
+                            Status = 0,
+                            Title = "Auckland Night Lights"
+                        },
+                        new
+                        {
+                            Id = new Guid("da000000-0000-0000-0000-000000000001"),
+                            CreatedAt = new DateTime(2026, 7, 20, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Description = "Climb to the summit of Mt Eden and enjoy the panoramic views.",
+                            Latitude = -36.875999999999998,
+                            Longitude = 174.76439999999999,
+                            RewardXp = 120,
+                            Status = 0,
+                            Title = "Mt Eden Summit"
+                        },
+                        new
+                        {
+                            Id = new Guid("da000000-0000-0000-0000-000000000002"),
+                            CreatedAt = new DateTime(2026, 7, 20, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Description = "Have a relaxing picnic at Cornwall Park.",
+                            Latitude = -36.900500000000001,
+                            Longitude = 174.78299999999999,
+                            RewardXp = 70,
+                            Status = 0,
+                            Title = "Cornwall Park Picnic"
+                        },
+                        new
+                        {
+                            Id = new Guid("da000000-0000-0000-0000-000000000003"),
+                            CreatedAt = new DateTime(2026, 7, 20, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Description = "Visit One Tree Hill and learn about its history.",
+                            Latitude = -36.9026,
+                            Longitude = 174.785,
+                            RewardXp = 100,
+                            Status = 0,
+                            Title = "One Tree Hill Explorer"
+                        },
+                        new
+                        {
+                            Id = new Guid("da000000-0000-0000-0000-000000000004"),
+                            CreatedAt = new DateTime(2026, 7, 20, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Description = "Explore the beautiful Auckland Domain gardens.",
+                            Latitude = -36.860599999999998,
+                            Longitude = 174.77619999999999,
+                            RewardXp = 80,
+                            Status = 0,
+                            Title = "Auckland Domain Adventure"
+                        },
+                        new
+                        {
+                            Id = new Guid("da000000-0000-0000-0000-000000000005"),
+                            CreatedAt = new DateTime(2026, 7, 20, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Description = "Spot native birds at Western Springs Park.",
+                            Latitude = -36.866999999999997,
+                            Longitude = 174.71850000000001,
+                            RewardXp = 100,
+                            Status = 0,
+                            Title = "Western Springs Wildlife"
+                        },
+                        new
+                        {
+                            Id = new Guid("dc000000-0000-0000-0000-000000000001"),
+                            CreatedAt = new DateTime(2026, 7, 20, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Description = "Visit the Auckland War Memorial Museum and explore NZ history.",
+                            Latitude = -36.860599999999998,
+                            Longitude = 174.77780000000001,
+                            RewardXp = 120,
+                            Status = 0,
+                            Title = "Auckland War Memorial Museum"
+                        },
+                        new
+                        {
+                            Id = new Guid("dc000000-0000-0000-0000-000000000002"),
+                            CreatedAt = new DateTime(2026, 7, 20, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Description = "Explore contemporary and traditional art at Auckland Art Gallery.",
+                            Latitude = -36.8506,
+                            Longitude = 174.7655,
+                            RewardXp = 80,
+                            Status = 0,
+                            Title = "Auckland Art Gallery"
+                        },
+                        new
+                        {
+                            Id = new Guid("dc000000-0000-0000-0000-000000000003"),
+                            CreatedAt = new DateTime(2026, 7, 20, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Description = "Take a walk through historic Albert Park.",
+                            Latitude = -36.851500000000001,
+                            Longitude = 174.7671,
+                            RewardXp = 70,
+                            Status = 0,
+                            Title = "Albert Park History Walk"
+                        },
+                        new
+                        {
+                            Id = new Guid("dc000000-0000-0000-0000-000000000004"),
+                            CreatedAt = new DateTime(2026, 7, 20, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Description = "Discover the heritage buildings along High Street.",
+                            Latitude = -36.847499999999997,
+                            Longitude = 174.76499999999999,
+                            RewardXp = 90,
+                            Status = 0,
+                            Title = "High Street Heritage Hunt"
+                        },
+                        new
+                        {
+                            Id = new Guid("dc000000-0000-0000-0000-000000000005"),
+                            CreatedAt = new DateTime(2026, 7, 20, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Description = "Learn and use a traditional Māori greeting. Type \"Kia ora\" to complete!",
+                            Latitude = -36.848500000000001,
+                            Longitude = 174.76329999999999,
+                            RewardXp = 60,
+                            Status = 0,
+                            Title = "Learn a Māori Greeting"
+                        },
+                        new
+                        {
+                            Id = new Guid("df000000-0000-0000-0000-000000000001"),
+                            CreatedAt = new DateTime(2026, 7, 20, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Description = "Find and visit a hidden café in Auckland CBD.",
+                            Latitude = -36.846499999999999,
+                            Longitude = 174.7645,
+                            RewardXp = 80,
+                            Status = 0,
+                            Title = "Hidden Café Hunt"
+                        },
+                        new
+                        {
+                            Id = new Guid("df000000-0000-0000-0000-000000000002"),
+                            CreatedAt = new DateTime(2026, 7, 20, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Description = "Try the best flat white in Auckland and share your review.",
+                            Latitude = -36.844499999999996,
+                            Longitude = 174.76349999999999,
+                            RewardXp = 90,
+                            Status = 0,
+                            Title = "Best Flat White Challenge"
+                        },
+                        new
+                        {
+                            Id = new Guid("df000000-0000-0000-0000-000000000003"),
+                            CreatedAt = new DateTime(2026, 7, 20, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Description = "Visit a night market and try international street food.",
+                            Latitude = -36.869999999999997,
+                            Longitude = 174.785,
+                            RewardXp = 110,
+                            Status = 0,
+                            Title = "Auckland Night Market"
+                        },
+                        new
+                        {
+                            Id = new Guid("df000000-0000-0000-0000-000000000004"),
+                            CreatedAt = new DateTime(2026, 7, 20, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Description = "Enjoy classic Kiwi fish and chips with an ocean view.",
+                            Latitude = -36.8523,
+                            Longitude = 174.8313,
+                            RewardXp = 70,
+                            Status = 0,
+                            Title = "Eat Fish & Chips by the Sea"
+                        },
+                        new
+                        {
+                            Id = new Guid("df000000-0000-0000-0000-000000000005"),
+                            CreatedAt = new DateTime(2026, 7, 20, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Description = "Try an authentic New Zealand meat pie.",
+                            Latitude = -36.847999999999999,
+                            Longitude = 174.76249999999999,
+                            RewardXp = 60,
+                            Status = 0,
+                            Title = "Try a Kiwi Pie"
+                        },
+                        new
+                        {
+                            Id = new Guid("db000000-0000-0000-0000-000000000001"),
+                            CreatedAt = new DateTime(2026, 7, 20, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Description = "Visit the iconic Old Arts Building at University of Auckland.",
+                            Latitude = -36.8523,
+                            Longitude = 174.76910000000001,
+                            RewardXp = 60,
+                            Status = 0,
+                            Title = "Old Arts Building - UoA"
+                        },
+                        new
+                        {
+                            Id = new Guid("db000000-0000-0000-0000-000000000002"),
+                            CreatedAt = new DateTime(2026, 7, 20, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Description = "Check in at the General Library, UoA.",
+                            Latitude = -36.851999999999997,
+                            Longitude = 174.768,
+                            RewardXp = 70,
+                            Status = 0,
+                            Title = "General Library - UoA"
+                        },
+                        new
+                        {
+                            Id = new Guid("db000000-0000-0000-0000-000000000003"),
+                            CreatedAt = new DateTime(2026, 7, 20, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Description = "Find the famous Clock Tower at University of Auckland.",
+                            Latitude = -36.852499999999999,
+                            Longitude = 174.76849999999999,
+                            RewardXp = 80,
+                            Status = 0,
+                            Title = "Clock Tower - UoA"
+                        },
+                        new
+                        {
+                            Id = new Guid("db000000-0000-0000-0000-000000000004"),
+                            CreatedAt = new DateTime(2026, 7, 20, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Description = "Explore AUT City Campus and check in.",
+                            Latitude = -36.851500000000001,
+                            Longitude = 174.7595,
+                            RewardXp = 60,
+                            Status = 0,
+                            Title = "AUT City Campus"
+                        },
+                        new
+                        {
+                            Id = new Guid("db000000-0000-0000-0000-000000000005"),
+                            CreatedAt = new DateTime(2026, 7, 20, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Description = "Visit Massey University Albany Campus.",
+                            Latitude = -36.729500000000002,
+                            Longitude = 174.702,
+                            RewardXp = 100,
+                            Status = 0,
+                            Title = "Massey Albany Explorer"
+                        },
+                        new
+                        {
+                            Id = new Guid("dd000000-0000-0000-0000-000000000001"),
+                            CreatedAt = new DateTime(2026, 7, 20, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Description = "Share your go-to study spot with the community.",
+                            Latitude = -36.848500000000001,
+                            Longitude = 174.76329999999999,
+                            RewardXp = 80,
+                            Status = 0,
+                            Title = "Recommend Your Favourite Study Spot"
+                        },
+                        new
+                        {
+                            Id = new Guid("dd000000-0000-0000-0000-000000000002"),
+                            CreatedAt = new DateTime(2026, 7, 20, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Description = "Discover and photograph hidden street art in Auckland.",
+                            Latitude = -36.848999999999997,
+                            Longitude = 174.762,
+                            RewardXp = 100,
+                            Status = 0,
+                            Title = "Hidden Street Art"
+                        },
+                        new
+                        {
+                            Id = new Guid("dd000000-0000-0000-0000-000000000003"),
+                            CreatedAt = new DateTime(2026, 7, 20, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Description = "Capture the most beautiful Auckland sunset.",
+                            Latitude = -36.848500000000001,
+                            Longitude = 174.76329999999999,
+                            RewardXp = 120,
+                            Status = 0,
+                            Title = "Sunset Photo Challenge"
+                        },
+                        new
+                        {
+                            Id = new Guid("dd000000-0000-0000-0000-000000000004"),
+                            CreatedAt = new DateTime(2026, 7, 20, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Description = "Share your favourite weekend walking route.",
+                            Latitude = -36.848500000000001,
+                            Longitude = 174.76329999999999,
+                            RewardXp = 90,
+                            Status = 0,
+                            Title = "Favourite Weekend Walk"
+                        },
+                        new
+                        {
+                            Id = new Guid("dd000000-0000-0000-0000-000000000005"),
+                            CreatedAt = new DateTime(2026, 7, 20, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Description = "Share a local secret spot that tourists don't know about.",
+                            Latitude = -36.848500000000001,
+                            Longitude = 174.76329999999999,
+                            RewardXp = 150,
+                            Status = 0,
+                            Title = "Local Secret Challenge"
+                        });
                 });
 
             modelBuilder.Entity("Backend.Models.User", b =>
@@ -226,6 +611,44 @@ namespace backend.Migrations
                     b.ToTable("BadgeUser");
                 });
 
+            modelBuilder.Entity("Backend.Models.Comment", b =>
+                {
+                    b.HasOne("Backend.Models.Quest", "Quest")
+                        .WithMany()
+                        .HasForeignKey("QuestId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Backend.Models.User", "User")
+                        .WithMany()
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Quest");
+
+                    b.Navigation("User");
+                });
+
+            modelBuilder.Entity("Backend.Models.CommentLike", b =>
+                {
+                    b.HasOne("Backend.Models.Comment", "Comment")
+                        .WithMany("CommentLikes")
+                        .HasForeignKey("CommentId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Backend.Models.User", "User")
+                        .WithMany()
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Comment");
+
+                    b.Navigation("User");
+                });
+
             modelBuilder.Entity("Backend.Models.LeaderboardEntry", b =>
                 {
                     b.HasOne("Backend.Models.User", "User")
@@ -297,6 +720,11 @@ namespace backend.Migrations
                         .HasForeignKey("UsersId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+                });
+
+            modelBuilder.Entity("Backend.Models.Comment", b =>
+                {
+                    b.Navigation("CommentLikes");
                 });
 
             modelBuilder.Entity("Backend.Models.Quest", b =>
