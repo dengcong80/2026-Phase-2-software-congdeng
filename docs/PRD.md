@@ -64,29 +64,34 @@ Roles are encoded in the JWT claim `role` and enforced by ASP.NET Core policies.
 ## 4. Business Process Flow (Mermaid Diagram)
 
 ```mermaid
-graph TD
-    A[App Launch] --> B{Obtain GPS}
-    B -- Success --> C[Fetch Nearby Official Quests]
-    B -- Failure --> D[Prompt to Enable Location]
-    C --> E[Display Quest List]
-    E --> F{User Action}
-    F -->|Complete Quest| G[Submit Completion Payload]
-    G --> H[Backend Calculates XP & Badges]
-    H --> I[Persist UserQuest, Update XP/Badges]
-    I --> J[SignalR Broadcast Leaderboard Update]
-    J --> K[Frontend Updates Leaderboard UI]
-    F -->|Create Community Quest| L[Open Community Quest Form]
-    L --> M[User Fills Form & Upload Image]
-    M --> N[Submit to Backend (Status=Pending)]
-    N --> O[Admin Review Queue]
-    O -->|Approve| P[Convert to Official Quest & Notify Creator]
-    O -->|Reject| Q[Send Rejection Email]
-    P --> R[Quest Appears in Official List]
-    Q --> R[Creator Receives Feedback]
-    style A fill:#f9f,stroke:#333,stroke-width:2px
-    style K fill:#bbf,stroke:#333,stroke-width:2px
-```
+flowchart TD
 
+    A["App Launch"] --> B{"Obtain GPS"}
+
+    B -->|Success| C["Fetch Nearby Official Quests"]
+    B -->|Failure| D["Prompt to Enable Location"]
+
+    C --> E["Display Quest List"]
+    E --> F{"User Action"}
+
+    F -->|Complete Quest| G["Submit Completion Payload"]
+    G --> H["Backend Calculates XP and Badges"]
+    H --> I["Update User Progress"]
+    I --> J["SignalR Broadcast"]
+    J --> K["Update Leaderboard"]
+
+    F -->|Create Community Quest| L["Open Community Quest Form"]
+    L --> M["Fill Form and Upload Image"]
+    M --> N["Submit to Backend - Pending"]
+
+    N --> O["Admin Review"]
+
+    O -->|Approve| P["Publish Official Quest"]
+    O -->|Reject| Q["Send Rejection Email"]
+
+    P --> R["Quest Appears in List"]
+    Q --> S["Creator Receives Feedback"]
+```
 ---
 
 ## 5. Non‑Functional Requirements
